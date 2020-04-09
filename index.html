@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title></title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "data.json",
+                dataType: "json",
+                success: function(json){
+                    addNewsList(json);
+                }
+            });
+        });
+        function addNewsList(json) {
+            $.each(json.result, function (index, obj) {
+                $(".news-list").append("<div class='news-item'>"+
+                    //获取新闻标题
+                    "<h2>"+obj['title']+"</h2>"+
+                    //获取作者
+                    "<p>"+obj['author']+
+                    //获取发布时间
+                    "&nbsp;&nbsp;&nbsp;&nbsp;"+obj['time']+
+                    //获取阅读人数
+                    "&nbsp;&nbsp;&nbsp;&nbsp;"+obj['status']+"人已阅读"+
+                    "</p></div>"+
+                    //获取图片url
+                    "<div class='news-img'>"+
+                    "<img src='"+obj['img']+"'/>"+
+                    "</div>"+
+                    //添加分割线
+                    "<div class='index-list-line'></div>");
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="public-header"></div>
+    <div class="index-banner">
+        <div class="index-banner-bg">
+            <img src="images/index-banner.png" alt="banner">
+        </div>
+    </div>
+    <div class="index-panel">
+        <a href="javascript:;" class="index-panel-grid">
+            <div class="index-panel-grid-icon">
+                <img src="images/index-icon1.png" alt="outdoor_icon">
+            </div>
+            <div class="index-panel-grid-text">
+                <h2>开门</h2>
+            </div>
+        </a>
+        <a href="javascript:;" class="index-panel-grid">
+            <div class="index-panel-grid-icon">
+                <img src="images/index-icon2.png" alt="pay_icon">
+            </div>
+            <div class="index-panel-grid-text">
+                <h2>缴费</h2>
+            </div>
+        </a>
+        <a href="javascript:;" class="index-panel-grid">
+            <div class="index-panel-grid-icon">
+                <img src="images/index-icon3.png" alt="repair_icon">
+            </div>
+            <div class="index-panel-grid-text">
+                <h2>报修</h2>
+            </div>
+        </a>
+        <a href="javascript:;" class="index-panel-grid">
+            <div class="index-panel-grid-icon">
+                <img src="images/index-icon4.png" alt="complain_icon">
+            </div>
+            <div class="index-panel-grid-text">
+                <h2>投诉</h2>
+            </div>
+        </a>
+    </div>
+    <div class="index-space"></div>
+    <div class="index-list">
+        <div class="index-list-head">
+            <h1>热门资讯</h1>
+        </div>
+        <div class="index-list-line"></div>
+        <div class="index-list-body">
+            <div class="news-list">
+            </div>
+        </div>
+    </div>
+    <div class="public-footer"></div>
+</body>
+</html>

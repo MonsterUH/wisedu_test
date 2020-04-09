@@ -1,0 +1,10 @@
+
+.public-header {
+    height: 178px;
+    background: url("../images/header-background.png");
+}
+
+.public-footer {
+    height: 100px;
+    background: #ffffff;
+}
